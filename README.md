@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 14 App Router Boilerplate with Shadcn, SWR, and Axios
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This repository is a modern and scalable boilerplate designed for building robust web applications using the latest technologies. It combines the power of **Next.js 14** with its new App Router feature and integrates **Shadcn** for highly customizable UI components, **SWR** for efficient data fetching and state management, and **Axios** for streamlined API communication.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+With this boilerplate, developers can quickly kickstart projects, following best practices for performance, accessibility, and maintainability.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 14 App Router**: Harness the power of the latest Next.js features, including server-side rendering (SSR), static site generation (SSG), and enhanced routing capabilities.
+- **Shadcn UI Components**: Pre-configured Shadcn integration for reusable, accessible, and visually appealing UI components.
+- **SWR (Stale-While-Revalidate)**: Simplified state management and data fetching with built-in caching and revalidation for a seamless user experience.
+- **Axios**: Easily handle HTTP requests with Axios, pre-configured for common use cases.
+- **Modern Development Workflow**: Includes TypeScript, ESLint, Prettier, and Husky for clean, maintainable, and consistent code.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Why Use This Boilerplate?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Speed Up Development**: Pre-configured integrations save time, so you can focus on building features.
+- **Scalable Architecture**: Designed to scale with your application's growth while keeping the codebase clean and organized.
+- **Best Practices**: Follow industry standards for performance, accessibility, and maintainability.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Technologies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **UI Components**: [Shadcn](https://shadcn.dev/)
+- **State Management**: [SWR](https://swr.vercel.app/)
+- **HTTP Requests**: [Axios](https://axios-http.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Language**: TypeScript
