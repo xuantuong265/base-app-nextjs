@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Pagination,
@@ -19,16 +19,16 @@ interface PaginationProps {
   ellipsisThreshold?: number;
 }
 
-const PaginationComponent = ({
+const PaginationComponent: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
   onPageChange,
   hrefBuilder,
   ellipsisThreshold = 2,
-}: PaginationProps) => {
+}) => {
   const router = useRouter();
 
-  const pages = React.useMemo(() => {
+  const pages = useMemo(() => {
     const result: (number | "ellipsis")[] = [];
 
     if (totalPages <= ellipsisThreshold * 2 + 3) {
@@ -40,23 +40,19 @@ const PaginationComponent = ({
       if (left > 2) result.push(1, "ellipsis");
       else result.push(...Array.from({ length: left - 1 }, (_, i) => i + 1));
 
-      result.push(
-        ...Array.from({ length: right - left + 1 }, (_, i) => left + i)
-      );
+      result.push(...Array.from({ length: right - left + 1 }, (_, i) => left + i));
 
       if (right < totalPages - 1) result.push("ellipsis", totalPages);
-      else
-        result.push(
-          ...Array.from({ length: totalPages - right }, (_, i) => right + 1 + i)
-        );
+      else result.push(...Array.from({ length: totalPages - right }, (_, i) => right + 1 + i));
     }
 
     return result;
   }, [totalPages, currentPage, ellipsisThreshold]);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (event: React.MouseEvent<HTMLAnchorElement>, page: number) => {
+    event.preventDefault();
     if (hrefBuilder) {
-      router.push(hrefBuilder(page), undefined, { shallow: true });
+      router.push(hrefBuilder(page));
     }
     onPageChange?.(page);
   };
@@ -71,7 +67,7 @@ const PaginationComponent = ({
             </PaginationItem>
           ) : (
             <PaginationItem key={page}>
-              <PaginationLink onClick={() => handlePageChange(page)}>
+              <PaginationLink onClick={(event) => handlePageChange(event, page)}>
                 {page}
               </PaginationLink>
             </PaginationItem>
