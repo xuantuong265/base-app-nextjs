@@ -3,11 +3,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 type TypographyProps = {
-  variant?:
-    | "h1"
-    | "h2"
-    | "h3"
-    | "p"
+  variant?: "h1" | "h2" | "h3" | "p";
   className?: string;
   children: React.ReactNode;
 };

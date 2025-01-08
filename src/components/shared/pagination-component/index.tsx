@@ -40,16 +40,24 @@ const PaginationComponent: React.FC<PaginationProps> = ({
       if (left > 2) result.push(1, "ellipsis");
       else result.push(...Array.from({ length: left - 1 }, (_, i) => i + 1));
 
-      result.push(...Array.from({ length: right - left + 1 }, (_, i) => left + i));
+      result.push(
+        ...Array.from({ length: right - left + 1 }, (_, i) => left + i)
+      );
 
       if (right < totalPages - 1) result.push("ellipsis", totalPages);
-      else result.push(...Array.from({ length: totalPages - right }, (_, i) => right + 1 + i));
+      else
+        result.push(
+          ...Array.from({ length: totalPages - right }, (_, i) => right + 1 + i)
+        );
     }
 
     return result;
   }, [totalPages, currentPage, ellipsisThreshold]);
 
-  const handlePageChange = (event: React.MouseEvent<HTMLAnchorElement>, page: number) => {
+  const handlePageChange = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    page: number
+  ) => {
     event.preventDefault();
     if (hrefBuilder) {
       router.push(hrefBuilder(page));
@@ -67,7 +75,9 @@ const PaginationComponent: React.FC<PaginationProps> = ({
             </PaginationItem>
           ) : (
             <PaginationItem key={page}>
-              <PaginationLink onClick={(event) => handlePageChange(event, page)}>
+              <PaginationLink
+                onClick={(event) => handlePageChange(event, page)}
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>

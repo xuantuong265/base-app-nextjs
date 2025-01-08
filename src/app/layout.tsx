@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SWRConfig } from "swr";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -30,20 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SWRConfig
-          value={{
-            fetcher: (url) => fetch(url).then((res) => res.json()),
-            revalidateOnFocus: false,
-            dedupingInterval: 1000,
-            errorRetryCount: 3,
-            shouldRetryOnError: () => false,
-            onError(err) {
-              console.error("SWR global error", err);
-            },
-          }}
-        >
-          {children}
-        </SWRConfig>
+        {children}
       </body>
     </html>
   );

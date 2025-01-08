@@ -1,8 +1,10 @@
-import axios, { 
-  AxiosInstance, 
-  AxiosResponse, 
-  AxiosError, 
-  InternalAxiosRequestConfig 
+"use client";
+
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError,
+  InternalAxiosRequestConfig,
 } from "axios";
 
 interface Auth {
@@ -74,7 +76,9 @@ class AxiosClient {
         if (errResponse) {
           switch (errResponse.status) {
             case 400:
-              console.error("Bad Request: The request was invalid or cannot be processed.");
+              console.error(
+                "Bad Request: The request was invalid or cannot be processed."
+              );
               break;
             case 401:
               // Token is expired or invalid
@@ -82,7 +86,8 @@ class AxiosClient {
                 return new Promise<unknown>((resolve) => {
                   this.addRefreshSubscriber((newAccessToken: string) => {
                     if (error.config) {
-                      error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+                      error.config.headers["Authorization"] =
+                        `Bearer ${newAccessToken}`;
                       resolve(axios(error.config));
                     }
                   });
@@ -95,9 +100,9 @@ class AxiosClient {
                 // The refresh token will be automatically included in cookies
                 const refreshResponse = await axios.post<RefreshTokenResponse>(
                   `${process.env.NEXT_PUBLIC_API_URL}/refresh-token`,
-                  {},  // Empty body since refresh token is in cookies
+                  {}, // Empty body since refresh token is in cookies
                   {
-                    withCredentials: true // Ensure cookies are sent with the request
+                    withCredentials: true, // Ensure cookies are sent with the request
                   }
                 );
 
@@ -110,20 +115,27 @@ class AxiosClient {
                 this.onAccessTokenFetched(newAccessToken);
 
                 if (error.config) {
-                  error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+                  error.config.headers["Authorization"] =
+                    `Bearer ${newAccessToken}`;
                 }
                 this.isRefreshing = false;
 
-                return error.config ? axios(error.config) : Promise.reject(error);
+                return error.config
+                  ? axios(error.config)
+                  : Promise.reject(error);
               } catch (refreshError) {
                 this.handleAuthError();
                 return Promise.reject(refreshError);
               }
             case 403:
-              console.error("Forbidden: You do not have permission to access this resource.");
+              console.error(
+                "Forbidden: You do not have permission to access this resource."
+              );
               break;
             case 500:
-              console.error("Server Error: Something went wrong on the server.");
+              console.error(
+                "Server Error: Something went wrong on the server."
+              );
               break;
             default:
               console.error(`Unexpected error: ${errResponse.status}`);
@@ -150,7 +162,9 @@ class AxiosClient {
     this.refreshSubscribers = [];
   }
 
-  private addRefreshSubscriber(callback: (newAccessToken: string) => void): void {
+  private addRefreshSubscriber(
+    callback: (newAccessToken: string) => void
+  ): void {
     this.refreshSubscribers.push(callback);
   }
 
