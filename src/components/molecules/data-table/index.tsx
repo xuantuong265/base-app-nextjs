@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/components/atoms/table";
 
 type DataWithOptionalKey<T> = T & { action?: JSX.Element };
 

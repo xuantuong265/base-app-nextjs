@@ -9,7 +9,7 @@ import {
   PaginationItem,
   PaginationLink,
   PaginationEllipsis,
-} from "@/components/ui/pagination";
+} from "@/components/atoms/pagination";
 
 interface PaginationProps {
   currentPage: number;
@@ -76,6 +76,7 @@ const PaginationComponent: React.FC<PaginationProps> = ({
           ) : (
             <PaginationItem key={page}>
               <PaginationLink
+                size={page === currentPage ? "lg" : "md"}
                 onClick={(event) => handlePageChange(event, page)}
               >
                 {page}
